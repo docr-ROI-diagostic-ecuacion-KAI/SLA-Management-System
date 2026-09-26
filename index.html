@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DOC ROI · SLA Contract & Performance Lab</title>
+  <link rel="icon" type="image/png" href="https://docroi.marketing/wp-content/uploads/2026/07/1b4b0df9-dfd6-4c1f-ba7f-235d2bf88de2.png" />
+  <link rel="apple-touch-icon" href="https://docroi.marketing/wp-content/uploads/2026/07/1b4b0df9-dfd6-4c1f-ba7f-235d2bf88de2.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#0B0F19;--navy:#003B5C;--blue:#0A6FAE;--sky:#D8ECF8;--ice:#EAF6FB;--white:#fff;
+      --muted:#64748b;--line:#dbe5ec;--soft:#f7fafc;--good:#177245;--warn:#b46900;--bad:#b42318;
+      --radius:18px;--shadow:0 18px 50px rgba(11,15,25,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#fff;line-height:1.5}
+    a{color:inherit}.container{width:min(1180px,calc(100% - 32px));margin:auto}
+    .topbar{position:sticky;top:0;z-index:40;background:rgba(11,15,25,.96);backdrop-filter:blur(10px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+    .topbar-inner{height:72px;display:flex;align-items:center;gap:14px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.01em}.brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;background:#fff}
+    .brand small{display:block;font-size:11px;font-weight:600;color:#a9bdd0;letter-spacing:.08em;text-transform:uppercase}
+    .nav{margin-left:auto;display:flex;gap:7px;flex-wrap:wrap}.nav a{font-size:13px;text-decoration:none;padding:9px 11px;border-radius:999px;color:#d9e4ee}.nav a:hover{background:#152236;color:#fff}
+    .hamb{display:none;margin-left:auto;border:1px solid #314154;background:transparent;color:#fff;border-radius:10px;padding:8px 10px}
+    .hero{background:linear-gradient(120deg,#0B0F19 0%,#003B5C 68%,#0A6FAE 100%);color:#fff;padding:72px 0 58px;position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;inset:auto -100px -190px auto;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(216,236,248,.26),rgba(216,236,248,0) 70%)}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;padding:7px 11px;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:#d9ecfa;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .hero h1{font-size:clamp(38px,6vw,72px);line-height:.97;max-width:900px;margin:20px 0 18px;letter-spacing:-.05em}
+    .hero p{max-width:760px;font-size:18px;color:#d8e5ef;margin:0 0 28px}
+    .hero-actions,.action-row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{appearance:none;border:0;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer;font-size:14px;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+    .btn:hover{transform:translateY(-1px)}.btn-primary{background:#fff;color:#0B0F19}.btn-blue{background:var(--blue);color:#fff}.btn-dark{background:var(--ink);color:#fff}.btn-ghost{border:1px solid var(--line);background:#fff;color:var(--ink)}.btn-danger{border:1px solid #fecaca;background:#fff7f7;color:#9b1c1c}
+    section{padding:58px 0}.section-kicker{font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+    h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.035em;margin:8px 0 12px}h3{font-size:22px;margin:0 0 10px}h4{margin:0 0 8px}
+    .lead{font-size:17px;color:#48586a;max-width:820px}
+    .grid{display:grid;gap:18px}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(4,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 7px 24px rgba(11,15,25,.04)}
+    .card.soft{background:var(--soft)}.card.blue{background:var(--ice);border-color:#cae4f2}.card.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .mini{font-size:12px;font-weight:900;color:var(--blue);text-transform:uppercase;letter-spacing:.08em}.card p{margin:6px 0 0;color:#526173}.dark p{color:#ccd7e1}
+    .formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;background:#edf4f8;border-radius:8px;padding:9px 10px;margin-top:12px;color:#173b50}
+    .learn-table,.report-table,.contract-table{width:100%;border-collapse:collapse}.learn-table th,.learn-table td,.report-table th,.report-table td,.contract-table th,.contract-table td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.learn-table th,.report-table th,.contract-table th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:#506274;background:#f6f9fb}.learn-table td,.report-table td,.contract-table td{font-size:14px}
+    .progress-wrap{position:sticky;top:72px;z-index:30;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 5px 18px rgba(11,15,25,.04)}
+    .progress{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px 0}.step{appearance:none;border:0;background:#edf3f6;border-radius:10px;padding:10px 12px;font-size:12px;font-weight:850;color:#607080;text-align:left;cursor:pointer;transition:.18s}.step:hover{transform:translateY(-1px);background:#e3edf3;color:var(--navy)}.step.active{background:var(--navy);color:#fff}.step.done{background:var(--sky);color:#003B5C}.step:focus-visible{outline:3px solid rgba(10,111,174,.2);outline-offset:2px}
+    .journey-explainer{padding:16px 0 0}.journey-tabs{display:flex;gap:8px;flex-wrap:wrap}.journey-tab{appearance:none;border:1px solid var(--line);background:#fff;color:#4d6071;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:850;cursor:pointer}.journey-tab.active{background:var(--ice);border-color:#9ecce2;color:var(--navy)}.journey-detail{margin-top:10px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(135deg,#f7fbfd,#fff);padding:15px 17px;display:grid;grid-template-columns:170px 1fr 220px;gap:16px;align-items:start}.journey-detail .jd-title{font-weight:900;color:var(--navy)}.journey-detail .jd-copy{font-size:13px;color:#526476}.journey-detail .jd-output{font-size:12px;color:#526476;border-left:1px solid var(--line);padding-left:16px}.journey-detail .jd-output b{display:block;color:var(--ink);margin-bottom:3px}
+    .next-row{display:flex;justify-content:flex-end;margin-top:22px}.next-row .btn{min-width:220px}
+    .live-tag{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border-radius:999px;background:#e8f7ef;color:var(--good);font-size:11px;font-weight:900}.live-tag:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px rgba(23,114,69,.12)}
+    .kpi-guide{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.kpi-guide .card{padding:16px}.kpi-guide h4{font-size:14px}.kpi-guide p{font-size:12px}
+    .gap-good{color:var(--good);font-weight:800}.gap-bad{color:var(--bad);font-weight:800}.gap-na{color:var(--muted);font-weight:700}
+    .evidence-contract-snapshot{border:1px dashed #9bb9ca;background:#fbfdff;border-radius:16px;padding:18px}.evidence-contract-snapshot h4{margin:0 0 8px;color:var(--navy)}
+    .lab-shell{background:#f4f8fb;border-top:1px solid #e1eaf0;border-bottom:1px solid #e1eaf0}
+    .lab-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(320px,.55fr);gap:22px;align-items:start}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}.panel-head{padding:18px 20px;background:var(--ink);color:#fff}.panel-head p{margin:4px 0 0;color:#b9c8d4;font-size:13px}.panel-body{padding:20px}
+    .group{padding:18px 0;border-top:1px solid var(--line)}.group:first-child{border-top:0;padding-top:0}.group-title{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}.group-title span{display:inline-flex;width:27px;height:27px;border-radius:50%;background:var(--sky);align-items:center;justify-content:center;font-weight:900;color:var(--navy);flex:0 0 auto}.group-title h4{flex:1;margin:2px 0 0}.group-title small{color:var(--muted)}
+    .fields{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.field.full{grid-column:1/-1}.field label{display:block;font-size:12px;font-weight:800;color:#46586a;margin:0 0 6px}.field small{display:block;color:#718096;margin-top:5px;font-size:11px}.field input,.field select,.field textarea{width:100%;border:1px solid #cad7df;background:#fff;border-radius:10px;padding:11px 12px;font:inherit;color:var(--ink);outline:none}.field textarea{min-height:86px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,111,174,.12)}
+    .unit{position:relative}.unit > span{position:absolute;right:12px;top:36px;font-size:12px;color:#789}.unit input{padding-right:55px}
+    .sticky-side{position:sticky;top:145px}.metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.metric{padding:14px;border-radius:13px;background:#f6f9fb;border:1px solid var(--line)}.metric .label{font-size:11px;color:#607080;font-weight:800;text-transform:uppercase;letter-spacing:.04em}.metric .value{font-size:23px;font-weight:900;letter-spacing:-.03em;margin-top:3px}.metric .hint{font-size:11px;color:#758494;margin-top:3px}
+    .decision{margin-top:12px;padding:16px;border-radius:14px;border:1px solid var(--line);background:#fff}.decision .big{font-size:31px;font-weight:950;letter-spacing:-.04em}.status-good{color:var(--good)}.status-warn{color:var(--warn)}.status-bad{color:var(--bad)}
+    .meter{height:9px;background:#e6edf2;border-radius:999px;overflow:hidden;margin-top:10px}.meter>div{height:100%;background:var(--blue);width:0%}
+    .pill{display:inline-flex;align-items:center;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:900}.pill.good{background:#e7f7ee;color:var(--good)}.pill.bad{background:#fff0ef;color:var(--bad)}.pill.na{background:#eef2f5;color:#61707c}
+    .report-area{display:block}.report-area.show{display:block}.report-header{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:18px}.report-meta{color:#617080;font-size:13px}
+    .risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.risk{border:1px solid var(--line);border-radius:14px;padding:15px}.risk strong{display:block;font-size:18px;margin-top:4px}.risk small{color:#667788}
+    .barrow{display:grid;grid-template-columns:180px 1fr 90px;align-items:center;gap:10px;margin:9px 0}.bar{height:10px;background:#e7edf2;border-radius:999px;overflow:hidden}.bar i{display:block;height:100%;background:var(--blue);border-radius:999px}
+    .contract-paper{background:#fff;border:1px solid #dbe3e8;box-shadow:0 16px 50px rgba(11,15,25,.08);padding:44px;max-width:940px;margin:0 auto}.contract-paper h3{font-size:30px;letter-spacing:-.03em}.contract-paper h4{margin-top:26px;font-size:16px;color:var(--navy)}.contract-paper p,.contract-paper li{font-size:13.5px;color:#2f3e4c}.contract-head{display:flex;justify-content:space-between;gap:20px;border-bottom:3px solid var(--navy);padding-bottom:16px;margin-bottom:18px}.doc-badge{font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--navy);padding:7px 9px;border-radius:8px;align-self:flex-start}.contract-note{background:#fff7e8;border:1px solid #f4d39c;padding:11px 13px;border-radius:10px;font-size:12px;color:#7a5010}.signatures{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:60px}.sig{border-top:1px solid #687988;padding-top:8px;font-size:12px;color:#526273}
+    .evidence{background:linear-gradient(135deg,#eef7fb,#fff);border:1px solid #d8e8f0;border-radius:20px;padding:24px}.checklist{display:grid;gap:8px}.check{display:flex;gap:10px;align-items:flex-start;font-size:14px}.check b{width:23px;height:23px;border-radius:50%;background:#d7edf7;color:#00507b;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+    .callout{border-left:4px solid var(--blue);padding:14px 16px;background:#f1f8fc;border-radius:0 12px 12px 0;color:#41576a}.footer{background:var(--ink);color:#fff;padding:34px 0}.footer p{color:#aabac7;font-size:13px;margin:5px 0}.footer-grid{display:flex;justify-content:space-between;gap:30px;align-items:flex-end}
+    .print-only{display:none}
+    @media(max-width:900px){.nav{display:none}.hamb{display:block}.grid-4,.grid-3{grid-template-columns:1fr 1fr}.lab-grid{grid-template-columns:1fr}.sticky-side{position:static}.progress{overflow-x:auto;grid-template-columns:repeat(4,minmax(150px,1fr))}.journey-detail{grid-template-columns:1fr}.journey-detail .jd-output{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:10px}.kpi-guide{grid-template-columns:1fr 1fr}.report-header{display:block}.risk-grid{grid-template-columns:1fr}.barrow{grid-template-columns:130px 1fr 60px}.contract-paper{padding:26px}.signatures{gap:26px}}
+    @media(max-width:620px){.container{width:min(100% - 22px,1180px)}.hero{padding:50px 0 42px}.grid-4,.grid-3,.grid-2,.fields,.metric-grid,.kpi-guide{grid-template-columns:1fr}.field.full{grid-column:auto}.topbar-inner{height:64px}.progress-wrap{top:64px}.contract-head,.footer-grid{display:block}.doc-badge{display:inline-flex;margin-top:12px}.contract-paper{padding:18px}.signatures{grid-template-columns:1fr;gap:42px}.barrow{grid-template-columns:1fr}.hero p{font-size:16px}.next-row{justify-content:stretch}.next-row .btn{width:100%}}
+    @media print{
+      body{background:#fff}.topbar,.hero,.progress-wrap,#learn,#build .panel:first-child,#build .sticky-side,.no-print,.footer{display:none!important}
+      section{padding:0}.lab-shell{background:#fff;border:0}.container{width:100%;max-width:none}.lab-grid{display:block}.report-area{display:none!important}.print-contract #contract{display:block!important}.print-report #contract{display:none!important}.print-report #dashboard{display:block!important}.print-contract #dashboard{display:none!important}
+      #contract,#dashboard{padding:0!important}.contract-paper{box-shadow:none;border:0;padding:0;max-width:none}.report-print{display:block!important}.report-screen{display:none!important}
+      @page{size:A4;margin:14mm}
+    }
+  
+    /* V4 · contextual micro-learning popovers — no layout shift */
+    .field label.has-help{display:flex;align-items:center;gap:6px;width:max-content;max-width:100%}
+    .group-title h4.has-help{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+    .info-dot{
+      appearance:none;-webkit-appearance:none;display:inline-flex;align-items:center;justify-content:center;
+      width:16px;height:16px;min-width:16px;padding:0;margin:0;border-radius:50%;
+      border:1px solid #a9c8d9;background:#f5fbfe;color:var(--blue);
+      font-family:Georgia,"Times New Roman",serif;font-size:10px;font-style:italic;font-weight:700;line-height:1;
+      cursor:help;vertical-align:middle;box-shadow:none;opacity:.84;transition:background .15s,border-color .15s,color .15s,opacity .15s,box-shadow .15s;
+    }
+    .info-dot:hover,.info-dot:focus-visible,.info-dot[aria-expanded="true"]{
+      background:var(--sky);border-color:#7db4d1;color:var(--navy);opacity:1;outline:none;
+      box-shadow:0 0 0 3px rgba(10,111,174,.10);
+    }
+    .micro-help-popover{
+      position:fixed;z-index:9999;width:min(320px,calc(100vw - 24px));padding:12px 14px;
+      border:1px solid #b9d9ea;border-radius:12px;background:#eaf6fb;color:var(--navy);
+      box-shadow:0 14px 36px rgba(0,59,92,.16);font-size:12px;line-height:1.48;font-weight:520;
+      letter-spacing:0;text-transform:none;text-align:left;opacity:0;visibility:hidden;
+      transform:translateY(4px) scale(.985);transform-origin:top center;pointer-events:none;
+      transition:opacity .14s ease,transform .14s ease,visibility .14s ease;
+    }
+    .micro-help-popover.open{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+    .micro-help-popover.pinned{pointer-events:auto}
+    .micro-help-popover:before{
+      content:"";position:absolute;left:var(--arrow-x,24px);width:9px;height:9px;background:#eaf6fb;
+      border-left:1px solid #b9d9ea;border-top:1px solid #b9d9ea;transform:rotate(45deg);
+    }
+    .micro-help-popover[data-placement="bottom"]:before{top:-5px}
+    .micro-help-popover[data-placement="top"]:before{bottom:-5px;transform:rotate(225deg)}
+    @media (max-width:680px){
+      .micro-help-popover{width:min(300px,calc(100vw - 20px));font-size:12px}
+      .info-dot{width:17px;height:17px;min-width:17px}
+    }
+
+
+    /* V5 · DOC ROI brand alignment */
+    :root{
+      --docroi-black:#05070b;--docroi-ink:#0b0f19;--docroi-muted:#566273;--docroi-line:#dde5ee;
+      --docroi-soft:#f6f7f9;--docroi-white:#ffffff;--docroi-blue:#003b5c;--docroi-ice:#d8ecf8;--docroi-accent:#c99a4a;
+      --radius:8px;--shadow:0 14px 36px rgba(5,7,11,.06);
+    }
+    body{font-family:Inter,Helvetica,Arial,sans-serif}
+    section[id],.docroi-anchor-target{scroll-margin-top:150px}
+    .container{width:min(1180px,calc(100% - 44px));margin:auto}
+
+    .topbar{background:#05070b;border-bottom:1px solid rgba(255,255,255,.10);backdrop-filter:none}
+    .topbar-inner{min-height:68px;height:auto;padding:10px 0;gap:18px}
+    .brand-logo{display:inline-flex;align-items:center;flex:0 0 auto;text-decoration:none}
+    .brand-logo img{display:block;width:auto;height:38px;max-width:168px;object-fit:contain;border-radius:0;background:transparent}
+    .header-context{font-size:12px;font-weight:700;color:#9eabb8;letter-spacing:.02em;white-space:nowrap}
+    .nav{align-items:center;gap:4px}
+    .nav a{border-radius:8px;padding:9px 11px;color:#d7dee6;font-size:13px;font-weight:700}
+    .nav a:hover{background:#151a22;color:#fff}
+    .nav .docroi-header-action{background:#fff;color:#05070b;border:1px solid #fff;border-radius:8px;padding:10px 14px;font-weight:800;margin-left:4px}
+    .nav .docroi-header-action:hover{background:#edf2f6;color:#05070b}
+    .hamb{border-radius:8px;border:1px solid #333c47;padding:8px 10px;background:transparent}
+
+    .hero{
+      min-height:540px;display:flex;align-items:center;padding:84px 0 72px;color:#fff;position:relative;overflow:hidden;
+      background-image:linear-gradient(90deg,rgba(5,7,11,.96) 0%,rgba(0,59,92,.88) 45%,rgba(0,59,92,.58) 100%),url('https://docroi.marketing/wp-content/uploads/2026/09/SLA.png');
+      background-size:cover;background-position:center center;background-repeat:no-repeat;
+    }
+    .hero:after{display:none}
+    .hero-inner{position:relative;z-index:1}
+    .eyebrow{border-radius:999px;border:1px solid rgba(216,236,248,.40);background:rgba(5,7,11,.22);color:#d8ecf8;padding:7px 11px}
+    .hero h1{font-size:clamp(42px,5.8vw,70px);line-height:1.00;letter-spacing:-.045em;max-width:860px;margin:20px 0 18px;text-shadow:0 2px 22px rgba(0,0,0,.28)}
+    .hero p{max-width:720px;font-size:18px;line-height:1.68;color:#edf4f8;text-shadow:0 1px 14px rgba(0,0,0,.25)}
+    .hero .btn{border-radius:8px}
+    .hero .btn-blue{background:#0a6fae;color:#fff;border:1px solid rgba(255,255,255,.18)}
+
+    .btn{border-radius:8px}
+    .card,.panel,.metric,.decision,.risk,.contract-note,.evidence,.journey-detail,.step,.field input,.field select,.field textarea{border-radius:8px}
+    .panel{box-shadow:0 14px 36px rgba(5,7,11,.06)}
+    .card{box-shadow:0 10px 28px rgba(5,7,11,.04)}
+    .progress-wrap{top:68px}
+    .progress{padding:9px 0}
+    .step{border-radius:8px}
+    .journey-detail{background:#fff}
+    .journey-tab{border-radius:999px}
+    .callout{border-radius:0 8px 8px 0}
+
+    .diiip-section{background:#003b5c;color:#fff;padding:72px 24px}
+    .diiip-inner{margin:0 auto;max-width:980px}
+    .closing-heading{margin:0 auto 34px;max-width:780px;text-align:center}
+    .closing-heading span{color:#d8ecf8;display:block;font-size:12px;font-weight:900;letter-spacing:.06em;margin-bottom:12px}
+    .closing-heading h2{color:#fff;font-size:clamp(2rem,4vw,2.65rem);line-height:1.12;margin:0 0 18px}
+    .closing-heading p{color:#eaf6fb;font-size:17px;line-height:1.75;margin:0}
+    .diiip-list{display:grid;gap:10px}
+    .diiip-item{align-items:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#0b0f19;display:grid;gap:16px;grid-template-columns:64px 1fr;padding:16px 20px}
+    .diiip-item>div{align-items:center;background:#0b0f19;border-radius:8px;color:#fff;display:flex;font-size:28px;font-weight:900;height:48px;justify-content:center;width:48px}
+    .diiip-item strong{display:block;font-size:20px;margin-bottom:4px}
+    .diiip-item p{color:#5b6472;line-height:1.5;margin:0}
+
+    .kai-section{background:#0b0f19;color:#fff;padding:78px 24px}
+    .kai-inner{align-items:center;display:grid;gap:34px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin:0 auto;max-width:1180px}
+    .kai-pill{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);border-radius:999px;color:#d8ecf8;display:inline-block;font-size:12px;font-weight:900;letter-spacing:.06em;margin-bottom:22px;padding:10px 15px}
+    .kai-section h2{color:#fff;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.04;margin:0 0 22px}
+    .kai-section p{color:#edf2f7;font-size:1rem;line-height:1.8}
+    .kai-card{background:#fff;border-radius:8px;color:#0b0f19;padding:30px}
+    .kai-card>span{background:#eaf6fb;border:1px solid #d8ecf8;border-radius:999px;color:#003b5c;display:inline-block;font-size:12px;font-weight:900;margin-bottom:16px;padding:8px 12px}
+    .kai-card h3{font-size:clamp(1.7rem,4vw,2.4rem);margin:0 0 16px}
+    .kai-card p,.kai-card li{color:#5b6472;line-height:1.7}
+    .kai-card>div{background:#f1f4f8;border:1px solid #e1e7ef;border-radius:8px;margin-bottom:24px;padding:18px}
+    .kai-card>a{align-items:center;background:#05070b;border-radius:8px;color:#fff;display:flex;font-weight:900;justify-content:center;min-height:46px;text-decoration:none;padding:10px 14px}
+
+    .docroi-footer{background:#000;padding:58px 24px 48px;text-align:center;color:#fff}
+    .docroi-footer>div{margin:0 auto;max-width:920px}
+    .footer-logo-link{display:inline-flex;text-decoration:none;margin-bottom:20px}
+    .docroi-footer img{display:block;height:58px;width:auto;max-width:min(250px,78vw);object-fit:contain}
+    .docroi-footer p{color:#c0c7d1;line-height:1.8}
+    .docroi-footer a{color:#fff;font-weight:900;text-decoration:none}
+    .docroi-footer nav{align-items:center;color:#d1d5db;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:18px}
+    .docroi-footer nav a{color:#d1d5db;font-size:14px;font-weight:400}
+    .copyright{color:#c0c7d1;line-height:1.9}
+
+    @media(max-width:900px){
+      .header-context{display:none}
+      .nav{display:none;position:absolute;top:68px;left:0;right:0;margin:0;background:#05070b;border-top:1px solid #222a33;padding:12px 22px 16px;flex-direction:column;align-items:stretch;box-shadow:0 18px 30px rgba(0,0,0,.22)}
+      .nav.open{display:flex}
+      .nav a{width:100%}
+      .nav .docroi-header-action{margin:4px 0 0;text-align:center;justify-content:center}
+      .hamb{display:block}
+      .hero{min-height:500px;background-position:62% center}
+    }
+    @media(max-width:620px){
+      .container{width:min(100% - 28px,1180px)}
+      .brand-logo img{height:34px;max-width:150px}
+      .hero{min-height:470px;padding:64px 0 58px;background-position:65% center;background-image:linear-gradient(90deg,rgba(5,7,11,.97) 0%,rgba(0,59,92,.91) 62%,rgba(0,59,92,.72) 100%),url('https://docroi.marketing/wp-content/uploads/2026/09/SLA.png')}
+      .hero h1{font-size:clamp(38px,12vw,52px)}
+      .hero p{font-size:16px;line-height:1.6}
+      .progress-wrap{top:64px}
+      .diiip-item{grid-template-columns:1fr;text-align:left}
+    }
+    @media print{
+      .diiip-section,.kai-section,.docroi-footer{display:none!important}
+    }
+
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand-logo" href="https://doc-roi-my-cabinet.vercel.app/" aria-label="DOC ROI cabinet">
+      <img src="https://docroi.marketing/wp-content/uploads/2026/07/Logo_Negro_DoC_ROI.jpg" alt="DOC ROI">
+    </a>
+    <nav class="nav" id="mainNav" aria-label="Primary navigation">
+      <a href="#learn">Learn</a>
+      <a href="#contract">Contract</a>
+      <a href="#dashboard">KPIs</a>
+      <a class="docroi-header-action" href="#build">Configure SLA</a>
+    </nav>
+    <button class="hamb" type="button" aria-label="Open navigation" aria-controls="mainNav" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero-inner">
+    <span class="eyebrow">DOC ROI · SLA MANAGEMENT SYSTEM</span>
+    <h1 id="hero-title">Service Level Agreement<br>Contract & Performance Lab</h1>
+    <p>Build the agreement, define measurable service commitments, test operational performance and finish with a live contract and KPI management dashboard.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#learn">Understand the model</a>
+      <button class="btn btn-blue" onclick="loadExample()">Load Example</button>
+    </div>
+  </div>
+</section>
+
+<div class="progress-wrap no-print"><div class="container"><div class="progress" id="progress">
+  <button class="step active" data-target="learn" data-guide="understand">1 · Understand</button><button class="step" data-target="build" data-guide="configure">2 · Configure Agreement</button><button class="step" data-target="contract" data-guide="contract">3 · Contract</button><button class="step" data-target="dashboard" data-guide="kpis">4 · KPI Management</button>
+</div></div></div>
+<div class="journey-explainer no-print"><div class="container">
+  <div class="journey-tabs" id="journeyTabs">
+    <button class="journey-tab active" data-guide="understand">Understand</button><button class="journey-tab" data-guide="configure">Configure</button><button class="journey-tab" data-guide="contract">Contract</button><button class="journey-tab" data-guide="kpis">Manage KPIs</button>
+  </div>
+  <div class="journey-detail" id="journeyDetail"><div class="jd-title">1 · Understand the SLA model</div><div class="jd-copy">Learn the difference between an SLA, an operating objective and a KPI. Then understand the seven service metrics, their direction of improvement and the evidence required to govern them.</div><div class="jd-output"><b>Output</b>A measurement model you can explain before you start negotiating numbers.</div></div>
+</div></div>
+
+<section id="learn">
+  <div class="container">
+    <div class="section-kicker">01 · Learn</div><h2>An SLA is a management system, not a promise.</h2>
+    <p class="lead">A Service Level Agreement converts a commercial relationship into explicit service standards: <b>what must happen, who owns it, how it is measured, what happens when performance deviates, and how the parties review the relationship.</b></p>
+    <div class="grid grid-4" style="margin-top:24px">
+      <div class="card"><div class="mini">SLA</div><h3>Contractual commitment</h3><p>A measurable service level agreed between parties, normally linked to governance and remedies.</p></div>
+      <div class="card"><div class="mini">SLO</div><h3>Operational objective</h3><p>The target used by the operating team. It may be stricter than the contractual SLA to create a safety margin.</p></div>
+      <div class="card"><div class="mini">KPI</div><h3>Performance indicator</h3><p>The metric used to monitor the operation. Not every KPI needs to become a contractual obligation.</p></div>
+      <div class="card"><div class="mini">Evidence</div><h3>Measurement proof</h3><p>Every metric needs a source, period, owner and calculation rule. If it cannot be evidenced, it is difficult to govern.</p></div>
+    </div>
+
+    <div class="grid grid-3" style="margin-top:18px">
+      <div class="card blue"><div class="mini">1 · Define</div><h3>Scope & ownership</h3><p>Product content, order acceptance, logistics, returns and incidents. Ambiguous ownership becomes operational friction.</p></div>
+      <div class="card blue"><div class="mini">2 · Quantify</div><h3>Targets & thresholds</h3><p>Time, availability, return rate and customer rating become explicit thresholds with a clear “higher/lower is better” rule.</p></div>
+      <div class="card blue"><div class="mini">3 · Govern</div><h3>Remedies & review</h3><p>Service credits, bonuses, monitoring cadence, alerts and change control turn the SLA into an active governance mechanism.</p></div>
+    </div>
+
+    <div class="card" style="margin-top:18px;overflow:auto">
+      <h3>The seven metrics used in this lab</h3>
+      <table class="learn-table">
+        <thead><tr><th>Metric</th><th>Question</th><th>Pass rule</th><th>Typical evidence</th></tr></thead>
+        <tbody>
+          <tr><td>Replenishment lead time</td><td>How quickly can stock enter the agreed fulfilment point?</td><td>Actual ≤ Target</td><td>ASN / warehouse receipt timestamp</td></tr>
+          <tr><td>Customer delivery time</td><td>How quickly is an accepted order delivered?</td><td>Actual ≤ Target</td><td>Carrier scan / POD</td></tr>
+          <tr><td>Order acceptance time</td><td>How quickly does the supplier accept or reject an order?</td><td>Actual ≤ Target</td><td>Order platform timestamp</td></tr>
+          <tr><td>Stock availability</td><td>What percentage of demand can be served from available stock?</td><td>Actual ≥ Target</td><td>Inventory snapshot / ATP</td></tr>
+          <tr><td>Return rate</td><td>What share of fulfilled orders is returned?</td><td>Actual ≤ Target</td><td>RMA / returns log</td></tr>
+          <tr><td>Incident response time</td><td>How quickly is a customer or operational incident acknowledged?</td><td>Actual ≤ Target</td><td>Ticketing timestamps</td></tr>
+          <tr><td>Customer rating</td><td>Does the delivered experience meet the agreed quality level?</td><td>Actual ≥ Target</td><td>Verified customer review data</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout" style="margin-top:18px"><b>Teaching principle.</b> A strong SLA combines commercial logic, operational accountability, data evidence and customer impact. A target without an owner or a measurement source is not yet a usable SLA.</div>
+    <div class="next-row no-print"><button class="btn btn-blue" onclick="goToStep('build')">Next · Configure Agreement →</button></div>
+  </div>
+</section>
+
+<section id="build" class="lab-shell">
+  <div class="container">
+    <div class="section-kicker">02 · Configure Agreement</div><h2>Build the SLA one decision at a time.</h2>
+    <p class="lead">Complete the agreement from commercial context to service governance. The contract and KPI dashboard below update <b>live</b> as you edit the fields, so each input has an immediate operational consequence.</p>
+    <div class="action-row no-print" style="margin:20px 0 10px"><button class="btn btn-blue" onclick="loadExample()">Load Example</button><button class="btn btn-ghost" onclick="resetLab()">Reset lab</button><button class="btn btn-dark" onclick="goToStep('contract')">View Live Contract</button><span class="live-tag">Live outputs enabled</span></div>
+    <div class="callout no-print" style="margin:0 0 20px"><b>Need help with a field?</b> Hover over the subtle <b>i</b> beside any label to open a short learning note. Click the icon if you want to keep the note visible while you complete the field.</div>
+
+    <div class="lab-grid">
+      <div class="panel">
+        <div class="panel-head"><b>SLA Configuration</b><p>Complete the commercial, operational and performance parameters.</p></div>
+        <div class="panel-body">
+          <div class="group"><div class="group-title"><span>1</span><h4>Commercial context</h4><small>Who, what and through which model?</small></div>
+            <div class="fields">
+              <div class="field"><label>Supplier / manufacturer</label><input id="supplier" placeholder="e.g., Supplier name"></div>
+              <div class="field"><label>Brand / product</label><input id="product" placeholder="e.g., Product or brand"></div>
+              <div class="field"><label>Product category</label><input id="category" placeholder="e.g., Premium spirits"></div>
+              <div class="field"><label>Marketplace / commercial channel</label><input id="marketplace" placeholder="e.g., Marketplace name"></div>
+              <div class="field"><label>Commercial model</label><select id="model"><option value="">Select</option><option>1P</option><option>3P</option><option>Consignment</option></select></div>
+              <div class="field"><label>Measurement period</label><select id="period"><option>Monthly</option><option>Quarterly</option><option>Weekly</option></select></div>
+            </div>
+          </div>
+
+          <div class="group"><div class="group-title"><span>2</span><h4>Commercial terms</h4><small>Translate the relationship into unit economics.</small></div>
+            <div class="fields">
+              <div class="field unit"><label>Supplier payment term</label><input id="payDays" type="number" min="0" step="1"><span>days</span></div>
+              <div class="field unit"><label>Marketplace commission</label><input id="commission" type="number" min="0" max="100" step="0.1"><span>%</span></div>
+              <div class="field unit"><label>Marketing / visibility fee</label><input id="marketingFee" type="number" min="0" step="1"><span>€/mo</span></div>
+              <div class="field unit"><label>Customer selling price</label><input id="price" type="number" min="0" step="0.01"><span>€/unit</span></div>
+              <div class="field unit"><label>Supplier unit cost / transfer base</label><input id="supplierCost" type="number" min="0" step="0.01"><span>€/unit</span></div>
+              <div class="field unit"><label>Logistics cost</label><input id="logisticsCost" type="number" min="0" step="0.01"><span>€/unit</span></div>
+              <div class="field unit"><label>Estimated monthly volume</label><input id="volume" type="number" min="0" step="1"><span>units</span></div>
+              <div class="field"><label>Currency</label><select id="currency"><option>EUR</option><option>USD</option><option>GBP</option></select></div>
+            </div>
+          </div>
+
+          <div class="group"><div class="group-title"><span>3</span><h4>Operational ownership</h4><small>Assign responsibility before assigning targets.</small></div>
+            <div class="fields">
+              <div class="field"><label>Product content owner</label><select id="ownerContent"><option value="">Select</option><option>Supplier</option><option>Marketplace</option><option>Shared</option></select></div>
+              <div class="field"><label>Order management owner</label><select id="ownerOrder"><option value="">Select</option><option>Supplier</option><option>Marketplace</option><option>Shared</option></select></div>
+              <div class="field"><label>Logistics owner</label><select id="ownerLogistics"><option value="">Select</option><option>Supplier</option><option>Marketplace</option><option>3PL</option><option>Shared</option></select></div>
+              <div class="field"><label>Delivery scope</label><select id="deliveryScope"><option value="">Select</option><option>End customer</option><option>Marketplace warehouse</option><option>Regional hub</option></select></div>
+              <div class="field"><label>Returns owner</label><select id="ownerReturns"><option value="">Select</option><option>Supplier</option><option>Marketplace</option><option>Shared</option></select></div>
+              <div class="field"><label>Incident owner</label><select id="ownerIncidents"><option value="">Select</option><option>Supplier</option><option>Marketplace</option><option>Shared</option></select></div>
+              <div class="field"><label>Order portal / app used?</label><select id="portal"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+              <div class="field"><label>Review cadence</label><select id="reviewCadence"><option>Monthly service review</option><option>Quarterly business review</option><option>Weekly operations review</option></select></div>
+            </div>
+          </div>
+
+          <div class="group"><div class="group-title"><span>4</span><h4>SLA targets</h4><small>What is contractually acceptable?</small></div>
+            <div class="fields">
+              <div class="field unit"><label>Replenishment lead time target</label><input id="tLead" type="number" min="0" step="0.1"><span>days</span></div>
+              <div class="field unit"><label>Customer delivery target</label><input id="tDelivery" type="number" min="0" step="0.1"><span>days</span></div>
+              <div class="field unit"><label>Order acceptance target</label><input id="tAcceptance" type="number" min="0" step="0.1"><span>hours</span></div>
+              <div class="field unit"><label>Stock availability target</label><input id="tAvailability" type="number" min="0" max="100" step="0.1"><span>%</span></div>
+              <div class="field unit"><label>Maximum return rate</label><input id="tReturns" type="number" min="0" max="100" step="0.1"><span>%</span></div>
+              <div class="field unit"><label>Incident response target</label><input id="tIncident" type="number" min="0" step="0.1"><span>hours</span></div>
+              <div class="field unit"><label>Minimum customer rating</label><input id="tRating" type="number" min="0" max="5" step="0.1"><span>/5</span></div>
+              <div class="field"><label>SLA aggregate threshold</label><input id="slaThreshold" type="number" min="0" max="100" step="1" value="85"><small>Below this level, the relationship enters a review state.</small></div>
+            </div>
+          </div>
+
+          <div class="group"><div class="group-title"><span>5</span><h4>Observed performance</h4><small>Use actuals from the same measurement period.</small></div>
+            <div class="fields">
+              <div class="field unit"><label>Actual replenishment lead time</label><input id="aLead" type="number" min="0" step="0.1"><span>days</span></div>
+              <div class="field unit"><label>Actual customer delivery</label><input id="aDelivery" type="number" min="0" step="0.1"><span>days</span></div>
+              <div class="field unit"><label>Actual order acceptance</label><input id="aAcceptance" type="number" min="0" step="0.1"><span>hours</span></div>
+              <div class="field unit"><label>Actual stock availability</label><input id="aAvailability" type="number" min="0" max="100" step="0.1"><span>%</span></div>
+              <div class="field unit"><label>Actual return rate</label><input id="aReturns" type="number" min="0" max="100" step="0.1"><span>%</span></div>
+              <div class="field unit"><label>Actual incident response</label><input id="aIncident" type="number" min="0" step="0.1"><span>hours</span></div>
+              <div class="field unit"><label>Actual customer rating</label><input id="aRating" type="number" min="0" max="5" step="0.1"><span>/5</span></div>
+              <div class="field"><label>Performance data source</label><input id="dataSource" placeholder="e.g., WMS + OMS + CRM ticketing"></div>
+            </div>
+          </div>
+
+          <div class="group"><div class="group-title"><span>6</span><h4>Service credits & incentives</h4><small>Make consequences measurable and symmetric.</small></div>
+            <div class="fields">
+              <div class="field unit"><label>Delay service credit</label><input id="delayPenalty" type="number" min="0" max="100" step="0.1"><span>% comm.</span><small>Applied to variable commission when delivery misses target.</small></div>
+              <div class="field unit"><label>Stock-out service credit</label><input id="stockPenalty" type="number" min="0" step="1"><span>€</span></div>
+              <div class="field unit"><label>Full-compliance bonus</label><input id="bonus" type="number" min="0" max="100" step="0.1"><span>% GMV</span></div>
+              <div class="field"><label>Remedy review / cap note</label><input id="remedyNote" placeholder="e.g., Subject to monthly cap and dispute process"></div>
+            </div>
+          </div>
+
+          <div class="group"><div class="group-title"><span>7</span><h4>Data, analytics & governance</h4><small>Move from reactive SLA management to prevention.</small></div>
+            <div class="fields">
+              <div class="field"><label>Demand forecasting</label><select id="forecast"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+              <div class="field"><label>Supplier scoring</label><select id="scoring"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+              <div class="field"><label>Preventive alerts</label><select id="alerts"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+              <div class="field"><label>Agreement effective date</label><input id="effectiveDate" type="date"></div>
+              <div class="field full"><label>Measurement exclusions / assumptions</label><textarea id="exclusions" placeholder="Define agreed exclusions such as force majeure, customer-caused delay, invalid address, customs hold, approved campaign exceptions, etc."></textarea></div>
+              <div class="field full"><label>Jurisdiction / legal framework</label><input id="jurisdiction" placeholder="To be confirmed by the parties and legal counsel"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="sticky-side">
+        <div class="panel">
+          <div class="panel-head"><b>Live SLA Preview</b><p>Figures update as you change the agreement.</p></div>
+          <div class="panel-body">
+            <div class="metric-grid">
+              <div class="metric"><div class="label">Monthly GMV</div><div class="value" id="pvGMV">—</div><div class="hint">Price × volume</div></div>
+              <div class="metric"><div class="label">SLA compliance</div><div class="value" id="pvCompliance">—</div><div class="hint">Passed KPIs / 7</div></div>
+              <div class="metric"><div class="label">Net fee position</div><div class="value" id="pvNetFees">—</div><div class="hint">Fees + credits − bonus</div></div>
+              <div class="metric"><div class="label">Working-capital proxy</div><div class="value" id="pvFloat">—</div><div class="hint">Supplier base × payment days / 30</div></div>
+            </div>
+            <div class="decision"><div class="mini">Governance decision</div><div class="big" id="pvDecision">NOT READY</div><div id="decisionReason" style="font-size:12px;color:#657687">Complete the lab or load the example.</div><div class="meter"><div id="meter"></div></div></div>
+            <div style="margin-top:14px;font-size:12px;color:#627283"><b>Risk logic:</b> SLA risk becomes high below the aggregate threshold; customer risk is high if returns or rating fail; financial risk is high when supplier payment exceeds 45 days.</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <div class="next-row no-print"><button class="btn btn-blue" onclick="goToStep('contract')">Next · Review the Contract →</button></div>
+  </div>
+</section>
+
+<section id="contract" class="report-area" style="background:#f5f8fa">
+  <div class="container">
+    <div class="report-screen">
+      <div class="section-kicker">03 · Contract</div><div class="report-header"><div><h2>Your SLA becomes a live contract.</h2><p class="lead">This is the contractual deliverable. Every change made in the configuration above is reflected here immediately. Review the clauses, service levels, evidence rules and remedies before printing.</p></div><div class="action-row no-print"><button class="btn btn-blue" onclick="printContract()">Print / Save contract as PDF</button><button class="btn btn-ghost" onclick="downloadContractHTML()">Download contract HTML</button></div></div>
+    </div>
+    <article class="contract-paper" id="contractPaper"></article>
+    <div class="next-row no-print"><button class="btn btn-blue" onclick="goToStep('dashboard')">Next · Manage the KPIs →</button></div>
+  </div>
+</section>
+
+<section id="dashboard" class="report-area" style="background:#f4f8fb">
+  <div class="container">
+    <div class="report-screen">
+      <div class="section-kicker">04 · KPI Management</div><div class="report-header"><div><h2>SLA KPI Management Dashboard</h2><p class="lead">The SLA only creates value if it is managed. This final view tells the team <b>what to monitor, what the target is, what the actual result is, who should react, what evidence to collect and what management action follows.</b></p></div><div class="action-row no-print"><button class="btn btn-ghost" onclick="printReport()">Print / Save KPI report as PDF</button><button class="btn btn-ghost" onclick="downloadCSV()">Download KPI CSV</button></div></div>
+    </div>
+    <div class="kpi-guide">
+      <div class="card blue"><h4>1 · Monitor</h4><p>Capture the same seven KPIs every measurement period from agreed operational systems.</p></div>
+      <div class="card blue"><h4>2 · Compare</h4><p>Compare actual performance with the contractual target using the agreed higher/lower-is-better rule.</p></div>
+      <div class="card blue"><h4>3 · Manage</h4><p>Assign an owner, document evidence, trigger remedies where relevant and agree the corrective action.</p></div>
+    </div>
+    <div id="reportContent"></div>
+    <div class="next-row no-print"><button class="btn btn-ghost" onclick="goToStep('learn')">Return to the model ↑</button></div>
+  </div>
+</section>
+
+<section id="resources" class="diiip-section docroi-anchor-target">
+  <div class="diiip-inner">
+    <div class="closing-heading">
+      <span>METHODOLOGY AT THE END OF THE JOURNEY</span>
+      <h2>DIIIP turns SLA data into a repeatable management decision.</h2>
+      <p>The agreement becomes useful when commercial terms, operational evidence and service performance are converted into decisions that protect customer value and business economics.</p>
+    </div>
+    <div class="diiip-list">
+      <div class="diiip-item"><div>D</div><section><strong>Data</strong><p>Targets, actual performance, owners, timestamps, stock, returns, incidents and commercial conditions.</p></section></div>
+      <div class="diiip-item"><div>I</div><section><strong>Information</strong><p>The SLA structures those inputs into comparable service levels, evidence rules and contractual responsibilities.</p></section></div>
+      <div class="diiip-item"><div>I</div><section><strong>Intelligence</strong><p>Target-versus-actual logic identifies compliance, gaps, remedies, incentives and operational risk.</p></section></div>
+      <div class="diiip-item"><div>I</div><section><strong>Insights</strong><p>The dashboard reveals where service performance threatens continuity, customer experience or economic value.</p></section></div>
+      <div class="diiip-item"><div>P</div><section><strong>Personalization Actions</strong><p>Use the evidence to adapt supplier actions, service priorities, preventive alerts and governance decisions.</p></section></div>
+    </div>
+  </div>
+</section>
+
+<section id="kai-roi" class="kai-section docroi-anchor-target">
+  <div class="kai-inner">
+    <div>
+      <span class="kai-pill">KAI·ROI EQUATION · CUSTOMER EQUITY</span>
+      <h2>This SLA creates operational evidence for the KAI·ROI layer.</h2>
+      <p>The lab does not redefine KAI·ROI. It creates a structured operational asset connecting service reliability, customer experience, team accountability and measurable economic consequences.</p>
+      <p>The formal KAI·ROI structure remains sovereign; the SLA contributes evidence for implementation, Customer Equity reasoning and ROI decisions.</p>
+    </div>
+    <div class="kai-card">
+      <span>EXECUTIVE RESOURCE</span>
+      <h3>The KAI·ROI Equation Book</h3>
+      <p>A concise guide to understand how data, ROI, Customer Equity and strategic decisions connect inside the DOC ROI ecosystem.</p>
+      <div>
+        <strong>Inside the document:</strong>
+        <ul>
+          <li>What the KAI·ROI Equation is</li>
+          <li>Why Customer Equity matters</li>
+          <li>How ROI becomes a decision system</li>
+          <li>Why operational data must be monetized with purpose</li>
+        </ul>
+      </div>
+      <a href="https://docroi.marketing/kai-equation/" target="_blank" rel="noreferrer">Access the KAI·ROI Equation →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="docroi-footer">
+  <div>
+    <a class="footer-logo-link" href="https://doc-roi-my-cabinet.vercel.app/" aria-label="DOC ROI cabinet">
+      <img src="https://docroi.marketing/wp-content/uploads/2026/07/Logo_Negro_DoC_ROI.jpg" alt="DOC ROI">
+    </a>
+    <p><a href="https://doc-roi-executive.vercel.app/" target="_blank" rel="noreferrer">Consult with DOC ROI →</a></p>
+    <nav>
+      <a href="https://docroi.marketing/aviso-legal/" target="_blank" rel="noreferrer">Privacy Policy</a><span>|</span>
+      <a href="https://docroi.marketing/aviso-legal/" target="_blank" rel="noreferrer">Legal Notice</a><span>|</span>
+      <a href="https://docroi.marketing/aviso-legal/" target="_blank" rel="noreferrer">Intellectual Property</a>
+    </nav>
+    <p class="copyright">The intellectual property of the DOC ROI ecosystem belongs to <a href="https://docroi.marketing/ph-d-jorge-lucio/" target="_blank" rel="noreferrer">Ph. D. Jorge Lucio.</a></p>
+  </div>
+</footer>
+
+<script>
+const ids = ['supplier','product','category','marketplace','model','period','payDays','commission','marketingFee','price','supplierCost','logisticsCost','volume','currency','ownerContent','ownerOrder','ownerLogistics','deliveryScope','ownerReturns','ownerIncidents','portal','reviewCadence','tLead','tDelivery','tAcceptance','tAvailability','tReturns','tIncident','tRating','slaThreshold','aLead','aDelivery','aAcceptance','aAvailability','aReturns','aIncident','aRating','dataSource','delayPenalty','stockPenalty','bonus','remedyNote','forecast','scoring','alerts','effectiveDate','exclusions','jurisdiction'];
+const el = id => document.getElementById(id);
+const val = id => (el(id)?.value ?? '').trim();
+const num = id => { const n=parseFloat(val(id)); return Number.isFinite(n)?n:0; };
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const fmtMoney=(n,c='EUR')=>new Intl.NumberFormat('en-GB',{style:'currency',currency:c,maximumFractionDigits:2}).format(Number.isFinite(n)?n:0);
+const fmtPct=n=>`${(Number.isFinite(n)?n:0).toFixed(1)}%`;
+const todayISO=()=>new Date().toISOString().slice(0,10);
+
+function snapshot(){
+ const currency=val('currency')||'EUR';
+ const target={lead:num('tLead'),delivery:num('tDelivery'),acceptance:num('tAcceptance'),availability:num('tAvailability'),returns:num('tReturns'),incident:num('tIncident'),rating:num('tRating')};
+ const actual={lead:num('aLead'),delivery:num('aDelivery'),acceptance:num('aAcceptance'),availability:num('aAvailability'),returns:num('aReturns'),incident:num('aIncident'),rating:num('aRating')};
+ const readiness={
+  lead:val('tLead')!==''&&val('aLead')!=='',delivery:val('tDelivery')!==''&&val('aDelivery')!=='',acceptance:val('tAcceptance')!==''&&val('aAcceptance')!=='',availability:val('tAvailability')!==''&&val('aAvailability')!=='',returns:val('tReturns')!==''&&val('aReturns')!=='',incident:val('tIncident')!==''&&val('aIncident')!=='',rating:val('tRating')!==''&&val('aRating')!==''
+ };
+ const hasTargets=['tLead','tDelivery','tAcceptance','tAvailability','tReturns','tIncident','tRating'].some(id=>val(id)!=='');
+ const hasActuals=['aLead','aDelivery','aAcceptance','aAvailability','aReturns','aIncident','aRating'].some(id=>val(id)!=='');
+ const allKpisReady=Object.values(readiness).every(Boolean);
+ const pass={
+   lead: readiness.lead&&actual.lead<=target.lead,
+   delivery: readiness.delivery&&actual.delivery<=target.delivery,
+   acceptance: readiness.acceptance&&actual.acceptance<=target.acceptance,
+   availability: readiness.availability&&actual.availability>=target.availability,
+   returns: readiness.returns&&actual.returns<=target.returns,
+   incident: readiness.incident&&actual.incident<=target.incident,
+   rating: readiness.rating&&actual.rating>=target.rating
+ };
+ const readyCount=Object.values(readiness).filter(Boolean).length;
+ const passed=Object.entries(pass).filter(([k,v])=>readiness[k]&&v).length;
+ const compliance=readyCount ? passed/readyCount*100 : 0;
+ const gmv=num('price')*num('volume');
+ const commission=gmv*(num('commission')/100);
+ const marketing=num('marketingFee');
+ const supplierBase=num('supplierCost')*num('volume');
+ const logistics=num('logisticsCost')*num('volume');
+ const wcProxy=supplierBase*num('payDays')/30;
+ const delayCredit=(readiness.delivery && actual.delivery>target.delivery)?commission*(num('delayPenalty')/100):0;
+ const stockCredit=(readiness.availability && actual.availability<target.availability)?num('stockPenalty'):0;
+ const fullCompliance=allKpisReady&&passed===7;
+ const bonus=fullCompliance?gmv*(num('bonus')/100):0;
+ const netFeePosition=commission+marketing+delayCredit+stockCredit-bonus;
+ const supplierSettlement=Math.max(0,gmv-netFeePosition);
+ const unitContribution=num('price')-num('supplierCost')-num('logisticsCost');
+ const projectedContribution=unitContribution*num('volume');
+ const threshold=num('slaThreshold')||85;
+ const slaRisk=allKpisReady?(compliance<threshold?'HIGH':'CONTROLLED'):'N/A';
+ const financialRisk=val('payDays')===''?'N/A':(num('payDays')>45?'HIGH':'CONTROLLED');
+ const customerRisk=(readiness.returns&&readiness.rating)?(!pass.returns||!pass.rating?'HIGH':'CONTROLLED'):'N/A';
+ let decision='NOT READY', reason='Complete all seven KPI targets and actuals, or use Load Example.';
+ if(allKpisReady){
+   const highCount=[slaRisk,financialRisk,customerRisk].filter(x=>x==='HIGH').length;
+   if(compliance<60 || (slaRisk==='HIGH'&&customerRisk==='HIGH')){decision='NO GO';reason='Critical service/customer risk requires redesign or escalation before approval.';}
+   else if(highCount>0){decision='REVIEW';reason='One or more governance thresholds require a corrective action or commercial review.';}
+   else{decision='GO';reason='All governance thresholds are controlled and the agreement is ready for normal SLA management.';}
+ }
+ return {currency,target,actual,readiness,readyCount,allKpisReady,pass,passed,compliance,gmv,commission,marketing,supplierBase,logistics,wcProxy,delayCredit,stockCredit,bonus,netFeePosition,supplierSettlement,unitContribution,projectedContribution,fullCompliance,slaRisk,financialRisk,customerRisk,decision,reason,threshold,hasTargets,hasActuals};
+}
+
+function updatePreview(){
+ const s=snapshot();
+ el('pvGMV').textContent=s.gmv?fmtMoney(s.gmv,s.currency):'—';
+ el('pvCompliance').textContent=s.readyCount?fmtPct(s.compliance):'—';
+ el('pvNetFees').textContent=s.gmv?fmtMoney(s.netFeePosition,s.currency):'—';
+ el('pvFloat').textContent=s.supplierBase?fmtMoney(s.wcProxy,s.currency):'—';
+ el('pvDecision').textContent=s.decision; el('decisionReason').textContent=s.reason; el('meter').style.width=`${Math.min(100,s.compliance)}%`;
+ el('pvDecision').className='big '+(s.decision==='GO'?'status-good':s.decision==='REVIEW'?'status-warn':s.decision==='NO GO'?'status-bad':'');
+ renderContract(); renderReport();
+}
+
+function loadExample(){
+ const d={supplier:'Mezcal Dominique · Oaxaca',product:'Don Espadín Premium Mezcal · 700 ml',category:'Premium mezcal / craft spirits',marketplace:'Iberian Premium Marketplace · classroom simulation',model:'3P',period:'Monthly',payDays:30,commission:15,marketingFee:350,price:69,supplierCost:28,logisticsCost:8.5,volume:180,currency:'EUR',ownerContent:'Supplier',ownerOrder:'Supplier',ownerLogistics:'3PL',deliveryScope:'End customer',ownerReturns:'Shared',ownerIncidents:'Shared',portal:'Yes',reviewCadence:'Monthly service review',tLead:12,tDelivery:2,tAcceptance:2,tAvailability:97,tReturns:3,tIncident:6,tRating:4.5,slaThreshold:85,aLead:9,aDelivery:1.6,aAcceptance:1,aAvailability:99.2,aReturns:1.4,aIncident:2.5,aRating:4.8,dataSource:'OMS + 3PL tracking + inventory feed + CRM incidents + verified review data',delayPenalty:10,stockPenalty:500,bonus:1.5,remedyNote:'Monthly service credits and incentives are reviewed jointly, evidenced in the monthly service review and subject to the agreed cap and dispute process.',forecast:'Yes',scoring:'Yes',alerts:'Yes',effectiveDate:todayISO(),exclusions:'Force majeure; customer-caused delivery failure; invalid delivery address; customs or regulatory hold not attributable to the supplier; documented marketplace system outage.',jurisdiction:'To be confirmed by the parties and qualified legal counsel'};
+ Object.entries(d).forEach(([k,v])=>{if(el(k))el(k).value=v}); updatePreview();
+ setActiveStep('build'); selectJourneyGuide('configure'); goToStep('build');
+}
+function resetLab(){
+ ids.forEach(id=>{if(!el(id))return; if(id==='period')el(id).value='Monthly'; else if(id==='reviewCadence')el(id).value='Monthly service review'; else if(id==='currency')el(id).value='EUR'; else if(id==='slaThreshold')el(id).value='85'; else el(id).value='';});
+ updatePreview(); setActiveStep('build'); selectJourneyGuide('configure'); goToStep('build');
+}
+
+function kpiRows(s){
+ return [
+  ['Replenishment lead time',s.target.lead,s.actual.lead,'days',s.pass.lead,'Lower is better'],
+  ['Customer delivery time',s.target.delivery,s.actual.delivery,'days',s.pass.delivery,'Lower is better'],
+  ['Order acceptance time',s.target.acceptance,s.actual.acceptance,'hours',s.pass.acceptance,'Lower is better'],
+  ['Stock availability',s.target.availability,s.actual.availability,'%',s.pass.availability,'Higher is better'],
+  ['Return rate',s.target.returns,s.actual.returns,'%',s.pass.returns,'Lower is better'],
+  ['Incident response time',s.target.incident,s.actual.incident,'hours',s.pass.incident,'Lower is better'],
+  ['Customer rating',s.target.rating,s.actual.rating,'/5',s.pass.rating,'Higher is better']
+ ];
+}
+function statusPill(pass,ready=true){return `<span class="pill ${!ready?'na':pass?'good':'bad'}">${!ready?'PENDING':pass?'PASS':'MISS'}</span>`}
+function metricDisplay(v,u){return u==='%'?fmtPct(v):u==='/5'?Number(v).toFixed(1):`${Number(v).toFixed(1)} ${u}`}
+
+function renderReport(){
+ const s=snapshot(), rows=kpiRows(s), cur=s.currency;
+ const meta=[
+  {why:'Protects replenishment continuity and inbound planning.',owner:val('ownerLogistics')||'Logistics owner',evidence:'Warehouse / ASN receipt',action:'Review supplier production plan, ASN discipline and replenishment buffer.'},
+  {why:'Protects the customer promise and delivery experience.',owner:val('ownerLogistics')||'Logistics owner',evidence:'Carrier timestamp / POD',action:'Review carrier lane, dispatch cut-off and exception handling.'},
+  {why:'Prevents order ageing and lost fulfilment time.',owner:val('ownerOrder')||'Order owner',evidence:'OMS acceptance timestamp',action:'Automate order acknowledgement and define escalation for ageing orders.'},
+  {why:'Protects conversion and avoids lost sales from stock-outs.',owner:'Supplier + inventory planning',evidence:'Inventory / ATP feed',action:'Review forecast accuracy, safety stock and replenishment trigger.'},
+  {why:'Signals product, content, quality or delivery problems.',owner:val('ownerReturns')||'Returns owner',evidence:'RMA / returns log',action:'Run root-cause analysis by reason code and correct product/logistics defects.'},
+  {why:'Controls service recovery speed and operational escalation.',owner:val('ownerIncidents')||'Incident owner',evidence:'CRM / ticket timestamp',action:'Review staffing, severity matrix and escalation path.'},
+  {why:'Connects operational execution with customer-perceived quality.',owner:'Shared CX governance',evidence:'Verified customer rating',action:'Review VOC drivers and link low ratings to fulfilment/quality causes.'}
+ ];
+ const gapText=(r,i)=>{
+   if(!s.readiness[['lead','delivery','acceptance','availability','returns','incident','rating'][i]]) return '<span class="gap-na">Pending</span>';
+   const higher=i===3||i===6; const gap=Number(r[2])-Number(r[1]); const good=higher?gap>=0:gap<=0;
+   const unit=r[3]==='%'?' pp':r[3]==='/5'?' pts':` ${r[3]}`;
+   const txt=(gap>0?'+':'')+gap.toFixed(1)+unit;
+   return `<span class="${good?'gap-good':'gap-bad'}">${txt}</span>`;
+ };
+ const html=`
+  <div class="report-print">
+   <div class="grid grid-4" style="margin-bottom:18px">
+    <div class="card"><div class="mini">Monthly GMV</div><h3>${s.gmv?fmtMoney(s.gmv,cur):'—'}</h3><p>${val('volume')||'—'} units × ${val('price')?fmtMoney(num('price'),cur):'—'}</p></div>
+    <div class="card"><div class="mini">Net fee position</div><h3>${s.gmv?fmtMoney(s.netFeePosition,cur):'—'}</h3><p>Fees + service credits − bonus</p></div>
+    <div class="card"><div class="mini">Working-capital proxy</div><h3>${s.supplierBase?fmtMoney(s.wcProxy,cur):'—'}</h3><p>Supplier base × payment days / 30</p></div>
+    <div class="card"><div class="mini">SLA compliance</div><h3>${s.readyCount?fmtPct(s.compliance):'—'}</h3><p>${s.passed} passed · ${s.readyCount}/7 measured</p></div>
+   </div>
+   <div class="risk-grid">
+    <div class="risk"><small>SLA risk · threshold ${fmtPct(s.threshold)}</small><strong class="${s.slaRisk==='HIGH'?'status-bad':s.slaRisk==='CONTROLLED'?'status-good':''}">${s.slaRisk}</strong></div>
+    <div class="risk"><small>Financial risk · payment &gt;45 days</small><strong class="${s.financialRisk==='HIGH'?'status-bad':s.financialRisk==='CONTROLLED'?'status-good':''}">${s.financialRisk}</strong></div>
+    <div class="risk"><small>Customer risk · rating / returns</small><strong class="${s.customerRisk==='HIGH'?'status-bad':s.customerRisk==='CONTROLLED'?'status-good':''}">${s.customerRisk}</strong></div>
+   </div>
+   <div class="card" style="margin-bottom:18px"><div class="mini">Governance decision</div><h3 class="${s.decision==='GO'?'status-good':s.decision==='REVIEW'?'status-warn':s.decision==='NO GO'?'status-bad':''}">${s.decision}</h3><p>${esc(s.reason)}</p><p style="font-size:12px;color:#657687">Review cadence: ${esc(val('reviewCadence')||'Not specified')} · Data source: ${esc(val('dataSource')||'Not specified')}</p></div>
+   <div class="card" style="overflow:auto;margin-bottom:18px"><h3>The seven KPIs you must manage</h3><p style="margin-bottom:14px">Use this table in every service review. It combines the contractual objective with the actual result, the variance, accountability, evidence and the next management action.</p><table class="report-table"><thead><tr><th>KPI</th><th>Why it matters</th><th>Target</th><th>Actual</th><th>Gap</th><th>Status</th><th>Owner</th><th>Evidence</th><th>Management action</th></tr></thead><tbody>${rows.map((r,i)=>`<tr><td><b>${r[0]}</b><br><small>${r[5]}</small></td><td>${meta[i].why}</td><td>${metricDisplay(r[1],r[3])}</td><td>${s.readiness[['lead','delivery','acceptance','availability','returns','incident','rating'][i]]?metricDisplay(r[2],r[3]):'—'}</td><td>${gapText(r,i)}</td><td>${statusPill(r[4],s.readiness[['lead','delivery','acceptance','availability','returns','incident','rating'][i]])}</td><td>${esc(meta[i].owner)}</td><td>${meta[i].evidence}</td><td>${meta[i].action}</td></tr>`).join('')}</tbody></table></div>
+   <div class="grid grid-2" style="margin-bottom:18px">
+    <div class="card"><h3>Commercial impact</h3><table class="report-table"><tbody>
+      <tr><td>Variable commission</td><td>${fmtMoney(s.commission,cur)}</td></tr><tr><td>Marketing fee</td><td>${fmtMoney(s.marketing,cur)}</td></tr><tr><td>Delay service credit</td><td>${fmtMoney(s.delayCredit,cur)}</td></tr><tr><td>Stock service credit</td><td>${fmtMoney(s.stockCredit,cur)}</td></tr><tr><td>Full-compliance bonus</td><td>${fmtMoney(s.bonus,cur)}</td></tr><tr><td><b>Net fee position</b></td><td><b>${fmtMoney(s.netFeePosition,cur)}</b></td></tr>
+    </tbody></table></div>
+    <div class="card"><h3>Economics & capacity</h3><table class="report-table"><tbody>
+      <tr><td>Supplier base</td><td>${fmtMoney(s.supplierBase,cur)}</td></tr><tr><td>Logistics total</td><td>${fmtMoney(s.logistics,cur)}</td></tr><tr><td>Working-capital proxy</td><td>${fmtMoney(s.wcProxy,cur)}</td></tr><tr><td>Unit contribution proxy</td><td>${fmtMoney(s.unitContribution,cur)}</td></tr><tr><td>Projected contribution proxy</td><td>${fmtMoney(s.projectedContribution,cur)}</td></tr><tr><td>Supplier settlement proxy</td><td>${fmtMoney(s.supplierSettlement,cur)}</td></tr>
+    </tbody></table></div>
+   </div>
+   <div class="card"><h3>Management reading</h3><p><b>${esc(val('supplier')||'The supplier')}</b> is managed against seven service levels. The current measured compliance is <b>${s.readyCount?fmtPct(s.compliance):'not yet complete'}</b>. ${s.fullCompliance?`All seven metrics pass, so the full-compliance incentive is triggered. `:''}${s.delayCredit>0?`A delivery service credit of <b>${fmtMoney(s.delayCredit,cur)}</b> is triggered. `:''}${s.stockCredit>0?`A stock-out service credit of <b>${fmtMoney(s.stockCredit,cur)}</b> is triggered. `:''}The governance status is <b>${s.decision}</b>.</p><p style="font-size:12px;color:#657687">Measurement source: ${esc(val('dataSource')||'Not specified')} · Review cadence: ${esc(val('reviewCadence')||'Not specified')} · Generated: ${new Date().toLocaleString('en-GB')}</p></div>
+  </div>`;
+ el('reportContent').innerHTML=html;
+}
+
+function renderContract(){
+ const s=snapshot(), rows=kpiRows(s), cur=s.currency;
+ const effective=val('effectiveDate')?new Date(val('effectiveDate')+'T00:00:00').toLocaleDateString('en-GB'):'[to be agreed]';
+ const contract=`
+ <div class="contract-head"><div><div class="mini">Service Level Agreement</div><h3>${esc(val('supplier')||'[Supplier]')} × ${esc(val('marketplace')||'[Marketplace]')}</h3><div class="report-meta">Product: ${esc(val('product')||'[Product]')} · Model: ${esc(val('model')||'[Commercial model]')} · Effective date: ${effective}</div></div><div class="doc-badge">Draft · Classroom Generated</div></div>
+ <div class="contract-note"><b>Educational draft.</b> This document is produced by a training simulator and is not legal advice. Before execution, the parties should complete legal entity details, governing law, regulatory requirements, tax/trade terms, liability provisions and any mandatory sector-specific clauses with qualified advisers.</div>
+ <h4>1. Parties and purpose</h4><p>This Service Level Agreement (“SLA”) records the operational and commercial service commitments associated with <b>${esc(val('product')||'[product]')}</b> supplied by <b>${esc(val('supplier')||'[supplier]')}</b> through <b>${esc(val('marketplace')||'[channel]')}</b> under a <b>${esc(val('model')||'[model]')}</b> commercial model. The SLA is intended to define measurable service expectations, evidence requirements, governance and agreed remedies.</p>
+ <h4>2. Commercial terms</h4><p>The supplier payment term is <b>${num('payDays')} days</b>. The variable marketplace commission is <b>${fmtPct(num('commission'))}</b> of GMV, together with a marketing / visibility fee of <b>${fmtMoney(num('marketingFee'),cur)}</b> per month. The current planning assumptions are a customer selling price of <b>${fmtMoney(num('price'),cur)}</b>, supplier unit cost / transfer base of <b>${fmtMoney(num('supplierCost'),cur)}</b>, logistics cost of <b>${fmtMoney(num('logisticsCost'),cur)}</b> per unit and estimated volume of <b>${num('volume')} units per month</b>.</p>
+ <h4>3. Operational responsibilities</h4><table class="contract-table"><tbody>
+  <tr><td>Product content</td><td>${esc(val('ownerContent')||'[to be agreed]')}</td></tr><tr><td>Order management</td><td>${esc(val('ownerOrder')||'[to be agreed]')}</td></tr><tr><td>Logistics</td><td>${esc(val('ownerLogistics')||'[to be agreed]')} · Scope: ${esc(val('deliveryScope')||'[to be agreed]')}</td></tr><tr><td>Returns</td><td>${esc(val('ownerReturns')||'[to be agreed]')}</td></tr><tr><td>Incidents</td><td>${esc(val('ownerIncidents')||'[to be agreed]')}</td></tr><tr><td>Order portal / application</td><td>${esc(val('portal')||'[to be agreed]')}</td></tr>
+ </tbody></table>
+ <h4>4. Contractual service levels</h4><table class="contract-table"><thead><tr><th>Metric</th><th>Contractual target</th><th>Compliance rule</th><th>Evidence</th></tr></thead><tbody>${rows.map((r,i)=>`<tr><td>${r[0]}</td><td>${metricDisplay(r[1],r[3])}</td><td>${r[5]}</td><td>${['Warehouse / ASN receipt','Carrier delivery timestamp / POD','OMS order timestamp','Inventory / ATP feed','RMA or returns log','CRM / ticket timestamp','Verified customer rating'][i]}</td></tr>`).join('')}</tbody></table>
+ <h4>5. Measurement and reporting</h4><p>Performance will be measured on a <b>${esc((val('period')||'Monthly').toLowerCase())}</b> basis using <b>${esc(val('dataSource')||'[agreed operational systems]')}</b>. Aggregate SLA compliance is calculated as the unweighted share of the seven metrics that pass their contractual threshold. The governance review threshold is <b>${fmtPct(s.threshold)}</b>. Measurement exceptions must be evidenced and agreed before exclusion from the period result.</p>
+ <h4>6. Service credits and incentive</h4><p>If customer delivery time exceeds the contractual target, a service credit equal to <b>${fmtPct(num('delayPenalty'))}</b> of the variable marketplace commission for the measurement period is triggered. If stock availability falls below target, a fixed service credit of <b>${fmtMoney(num('stockPenalty'),cur)}</b> is triggered. If all seven service metrics pass, a performance bonus equal to <b>${fmtPct(num('bonus'))}</b> of monthly GMV is triggered. ${esc(val('remedyNote')||'Any caps, dispute rules and settlement mechanics must be agreed by the parties.')}</p>
+ <h4>7. Data, analytics and prevention</h4><p>The parties record the following operating capabilities: demand forecasting — <b>${esc(val('forecast')||'[TBC]')}</b>; supplier scoring — <b>${esc(val('scoring')||'[TBC]')}</b>; preventive alerts — <b>${esc(val('alerts')||'[TBC]')}</b>. These capabilities support early detection but do not replace the contractual measurement evidence.</p>
+ <h4>8. Governance and corrective action</h4><p>The parties will conduct a <b>${esc(val('reviewCadence')||'[review cadence]')}</b>. A REVIEW status requires a documented corrective action plan, accountable owner and target completion date. A NO GO status requires escalation and commercial/operational redesign before the relationship is approved or continued under unchanged terms.</p>
+ <h4>9. Exclusions and assumptions</h4><p>${esc(val('exclusions')||'No exclusions have been recorded. The parties should explicitly define force majeure, customer-caused delay, system outages and other approved measurement exclusions.')}</p>
+ <h4>10. Legal completion and change control</h4><p>Jurisdiction / legal framework: <b>${esc(val('jurisdiction')||'[to be confirmed]')}</b>. Any change to scope, service levels, remedies, measurement method or ownership should be documented and approved by authorised representatives of both parties.</p>
+ <h4>11. Signatures</h4><div class="signatures"><div class="sig">For ${esc(val('supplier')||'Supplier')}<br>Name / title / date</div><div class="sig">For ${esc(val('marketplace')||'Marketplace')}<br>Name / title / date</div></div>`;
+ el('contractPaper').innerHTML=contract;
+}
+
+const guideContent={
+ understand:{title:'1 · Understand the SLA model',copy:'Learn the difference between an SLA, an operating objective and a KPI. Then understand the seven service metrics, their direction of improvement and the evidence required to govern them.',output:'A measurement model you can explain before you start negotiating numbers.'},
+ configure:{title:'2 · Configure the agreement',copy:'Work from top to bottom. Define the parties and commercial model, convert the relationship into economics, assign operational ownership, set the seven contractual targets, capture actual performance, define remedies and finish with data and governance.',output:'A complete SLA configuration. Use the small information icons beside every field whenever a concept is unfamiliar.'},
+ contract:{title:'3 · Review the live contract',copy:'Read the agreement as a counterparty would. Check parties, commercial terms, responsibilities, KPI thresholds, measurement rules, remedies, exclusions, governance and signatures. Edit any field above and the contract changes immediately.',output:'A printable SLA draft ready to save as PDF and review with procurement, operations and legal advisers.'},
+ kpis:{title:'4 · Manage the KPIs',copy:'Use the final dashboard as the recurring service-review agenda. Compare target vs actual, inspect the variance, confirm the measurement source, assign ownership and decide the corrective action or incentive.',output:'A repeatable SLA governance routine for every measurement period.'}
+};
+function selectJourneyGuide(key){
+ const g=guideContent[key]||guideContent.understand;
+ document.querySelectorAll('.journey-tab').forEach(b=>b.classList.toggle('active',b.dataset.guide===key));
+ if(el('journeyDetail')) el('journeyDetail').innerHTML=`<div class="jd-title">${g.title}</div><div class="jd-copy">${g.copy}</div><div class="jd-output"><b>Output</b>${g.output}</div>`;
+}
+function setActiveStep(target){
+ const buttons=[...document.querySelectorAll('.step')];
+ const idx=buttons.findIndex(b=>b.dataset.target===target);
+ buttons.forEach((b,i)=>{b.className='step'+(i<idx?' done':i===idx?' active':'');});
+ const btn=buttons[idx]; if(btn) selectJourneyGuide(btn.dataset.guide);
+}
+function goToStep(target){
+ const node=document.getElementById(target); if(!node)return;
+ setActiveStep(target); node.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function validateForGeneration(){
+ const required=['supplier','product','marketplace','model','price','volume','tLead','tDelivery','tAcceptance','tAvailability','tReturns','tIncident','tRating','aLead','aDelivery','aAcceptance','aAvailability','aReturns','aIncident','aRating'];
+ const missing=required.filter(id=>val(id)==='');
+ if(missing.length){alert('Complete the key agreement and performance fields, or use “Load Example”.');return false;} return true;
+}
+function generateAll(){if(!validateForGeneration())return;updatePreview();goToStep('dashboard');}
+
+function downloadBlob(content,name,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},800);}
+function downloadCSV(){if(!validateForGeneration())return;const s=snapshot();const rows=[['Metric','Target','Actual','Unit','Pass','Rule'],...kpiRows(s).map(r=>[r[0],r[1],r[2],r[3],r[4]?'PASS':'MISS',r[5]])];const csv=rows.map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(',')).join('\n');downloadBlob(csv,'DOC_ROI_SLA_KPI_Report.csv','text/csv;charset=utf-8');}
+function downloadContractHTML(){if(!validateForGeneration())return;renderContract();const css=document.querySelector('style').innerHTML;const content=`<!doctype html><html><head><meta charset="utf-8"><title>SLA Agreement</title><style>${css}</style></head><body><article class="contract-paper">${el('contractPaper').innerHTML}</article></body></html>`;downloadBlob(content,'DOC_ROI_SLA_Agreement.html','text/html;charset=utf-8');}
+function printContract(){if(!validateForGeneration())return;renderContract();document.body.classList.add('print-contract');document.body.classList.remove('print-report');setTimeout(()=>window.print(),80)}
+function printReport(){if(!validateForGeneration())return;renderReport();document.body.classList.add('print-report');document.body.classList.remove('print-contract');setTimeout(()=>window.print(),80)}
+window.addEventListener('afterprint',()=>document.body.classList.remove('print-contract','print-report'));
+const fieldHelp={
+ supplier:'Enter the legal or commercial name of the company that supplies or manufactures the product. This is the counterparty whose service performance will be measured.',
+ product:'Identify the exact brand, SKU or service covered by the SLA. Be specific enough that both parties know what is inside — and outside — the agreement.',
+ category:'State the business category used to group the product or service. It helps interpret operating benchmarks, returns, demand patterns and service expectations.',
+ marketplace:'Name the marketplace, retailer, distributor or commercial channel through which the relationship operates. This is the channel receiving or governing the service.',
+ model:'Choose how the commercial relationship works. 1P means the channel buys/resells; 3P means the supplier sells through the platform; consignment means stock is supplied but ownership transfers later.',
+ period:'Choose the period used to calculate SLA performance. Monthly is common because it balances operational visibility with enough data to avoid reacting to isolated events.',
+ payDays:'Enter the number of calendar days between the agreed invoice/event date and supplier payment. Example: 30 means payment is contractually due 30 days later.',
+ commission:'Enter the percentage of sales value charged by the marketplace or channel as variable commission. Use the contractual rate, not an estimated margin.',
+ marketingFee:'Enter any fixed recurring amount paid for visibility, media, placement or commercial support. Use the amount that applies to the same measurement period.',
+ price:'Enter the final selling price per unit used to estimate GMV. Keep taxes and discounts consistent with the commercial definition agreed by both parties.',
+ supplierCost:'Enter the supplier transfer price or agreed unit-cost base used in the relationship. It is the amount used here to approximate supplier settlement economics.',
+ logisticsCost:'Enter the logistics cost per unit attributable to storage, fulfilment, transport or the agreed logistics scope. Use the same scope consistently across periods.',
+ volume:'Estimate the number of units expected to be sold or processed in one month. This turns unit economics into a monthly business-impact view.',
+ currency:'Select the currency used for price, fees, service credits and economic calculations. All monetary inputs in the exercise should use the same currency.',
+ ownerContent:'Select who is accountable for product information: titles, descriptions, images, specifications and mandatory content. Ownership means responsibility for keeping it complete and correct.',
+ ownerOrder:'Select who is accountable for receiving, validating and progressing orders. This owner should be able to explain ageing orders and correct acceptance delays.',
+ ownerLogistics:'Select who owns physical fulfilment and transport performance. Choose 3PL when an external logistics provider is operationally accountable for the agreed scope.',
+ deliveryScope:'Define where the delivery promise ends: the end customer, a marketplace warehouse or a regional hub. The KPI cannot be interpreted correctly without this boundary.',
+ ownerReturns:'Select who manages return authorisation, receipt, classification, resolution and corrective action. Shared ownership is appropriate when both parties control different steps.',
+ ownerIncidents:'Select who coordinates service incidents, escalation and resolution. The owner must be able to respond within the contractual incident-response target.',
+ portal:'Indicate whether orders and operational events are managed through a shared portal or application. This matters because timestamps can become formal SLA evidence.',
+ reviewCadence:'Choose how often the parties formally review performance. The review should confirm KPI results, exceptions, remedies, root causes and corrective actions.',
+ tLead:'Set the maximum acceptable replenishment lead time from the agreed start event to stock receipt/availability. Lower is better. Use a realistic contractual ceiling.',
+ tDelivery:'Set the maximum customer-delivery time allowed by the agreement. Define the start and end timestamps consistently; lower is better.',
+ tAcceptance:'Set the maximum time allowed to acknowledge or accept a valid order. This controls order ageing before fulfilment starts; lower is better.',
+ tAvailability:'Set the minimum percentage of time or demand in which stock must be available. Higher is better. Define how availability is calculated before using the KPI contractually.',
+ tReturns:'Set the maximum acceptable return rate for the measurement period. Lower is better. Make sure the return population and exclusions are clearly defined.',
+ tIncident:'Set the maximum time allowed to provide the agreed first response to an incident. This is response time, not necessarily full resolution time; lower is better.',
+ tRating:'Set the minimum acceptable verified customer rating on the chosen scale. Higher is better. Use a stable source and enough observations to make the KPI meaningful.',
+ slaThreshold:'Set the minimum aggregate percentage of the seven KPIs that must pass before governance remains in normal status. Below this threshold the relationship enters REVIEW.',
+ aLead:'Enter the actual measured replenishment lead time for the same period and definition used by the target. Do not mix forecast values with observed results.',
+ aDelivery:'Enter the actual customer-delivery time measured from the agreed timestamps. Compare like-for-like with the contractual delivery target.',
+ aAcceptance:'Enter the actual order-acceptance time for the period. Use system timestamps where possible rather than manual estimates.',
+ aAvailability:'Enter the actual stock-availability percentage calculated using the agreed formula and measurement window.',
+ aReturns:'Enter the actual return rate for the period using the same denominator, reason-code rules and exclusions agreed in the SLA.',
+ aIncident:'Enter the actual incident first-response time from the agreed ticket/event timestamp to the qualifying response.',
+ aRating:'Enter the actual verified customer rating for the period. Use the same source and scale used to define the contractual target.',
+ dataSource:'Name the systems that provide the performance evidence, for example OMS, WMS, carrier tracking, CRM ticketing or verified review data. Evidence should be reproducible.',
+ delayPenalty:'Set the percentage of variable commission credited back when delivery performance misses the contractual target. This is a service remedy, not a fine.',
+ stockPenalty:'Set the fixed service credit triggered when stock availability falls below target. The amount should be proportionate, explicit and subject to agreed caps.',
+ bonus:'Set the percentage of GMV paid as an incentive when all seven KPI conditions are met. It creates symmetry by rewarding excellent performance as well as correcting failure.',
+ remedyNote:'Record caps, dispute mechanics, settlement timing or other rules that qualify service credits and incentives. This prevents ambiguity when a remedy is triggered.',
+ forecast:'Indicate whether the relationship uses demand forecasting to anticipate replenishment needs. Forecasting supports prevention but does not replace measured SLA evidence.',
+ scoring:'Indicate whether supplier performance is converted into a recurring scorecard. Scoring helps compare periods, suppliers and improvement trends.',
+ alerts:'Indicate whether preventive alerts are used before a likely SLA breach. Examples include ageing orders, low stock, delayed dispatch or unresolved incidents.',
+ effectiveDate:'Enter the date from which the SLA becomes operational. Performance before this date should not normally be included unless the parties explicitly agree otherwise.',
+ exclusions:'List situations that may be excluded from KPI calculation, such as force majeure, customer-caused failures or documented external system outages. Keep exclusions narrow and evidential.',
+ jurisdiction:'Record the legal framework or jurisdiction to be confirmed for the agreement. For a real contract, this should be reviewed by qualified legal counsel before signature.'
+};
+const groupHelp={
+ 'Commercial context':'First define the scope of the relationship: who the parties are, which product is covered, the commercial channel and the measurement period. These fields become the identity of the SLA.',
+ 'Commercial terms':'Translate the relationship into comparable economics. These inputs allow the lab to calculate GMV, fees, supplier settlement and working-capital exposure.',
+ 'Operational ownership':'Assign accountability before you negotiate service targets. Every critical process needs an owner who can explain performance and execute corrective action.',
+ 'SLA targets':'Define the contractual service boundaries. Each target must be measurable, unambiguous and linked to a clear higher-is-better or lower-is-better rule.',
+ 'Observed performance':'Enter actual results from the same period, scope and formula used by the contractual target. Target and actual must be comparable to produce a valid SLA result.',
+ 'Service credits & incentives':'Define what happens economically when service fails — and when it excels. Remedies should be explicit, proportionate, measurable and governed.',
+ 'Data, analytics & governance':'Finish the SLA by defining prevention, review, exclusions and legal context. This turns the agreement from a static document into a repeatable management system.'
+};
+let activeHelpButton=null;
+let helpPinned=false;
+const helpPopover=document.createElement('div');
+helpPopover.className='micro-help-popover';
+helpPopover.id='docroi-micro-help';
+helpPopover.setAttribute('role','tooltip');
+helpPopover.setAttribute('aria-hidden','true');
+document.body.appendChild(helpPopover);
+
+function positionHelpPopover(btn){
+  if(!btn || !helpPopover.classList.contains('open')) return;
+  const r=btn.getBoundingClientRect();
+  const viewportW=window.innerWidth;
+  const viewportH=window.innerHeight;
+  const margin=12, gap=9;
+  const width=Math.min(320,viewportW-(margin*2));
+  helpPopover.style.width=width+'px';
+  // Measure after content and width are set.
+  const height=helpPopover.offsetHeight;
+  let left=r.left+(r.width/2)-(width/2);
+  left=Math.max(margin,Math.min(left,viewportW-width-margin));
+  let top=r.bottom+gap;
+  let placement='bottom';
+  if(top+height>viewportH-margin && r.top-height-gap>=margin){
+    top=r.top-height-gap;
+    placement='top';
+  }
+  helpPopover.dataset.placement=placement;
+  helpPopover.style.left=Math.round(left)+'px';
+  helpPopover.style.top=Math.round(top)+'px';
+  const center=(r.left+r.width/2)-left;
+  helpPopover.style.setProperty('--arrow-x',Math.max(14,Math.min(center-4,width-22))+'px');
+}
+
+function showHelp(btn,text,{pin=false}={}){
+  if(activeHelpButton && activeHelpButton!==btn) activeHelpButton.setAttribute('aria-expanded','false');
+  activeHelpButton=btn;
+  helpPinned=pin;
+  helpPopover.textContent=text;
+  helpPopover.classList.add('open');
+  helpPopover.classList.toggle('pinned',pin);
+  helpPopover.setAttribute('aria-hidden','false');
+  btn.setAttribute('aria-expanded','true');
+  requestAnimationFrame(()=>positionHelpPopover(btn));
+}
+
+function hideHelp(force=false){
+  if(helpPinned && !force) return;
+  if(activeHelpButton) activeHelpButton.setAttribute('aria-expanded','false');
+  activeHelpButton=null;
+  helpPinned=false;
+  helpPopover.classList.remove('open','pinned');
+  helpPopover.setAttribute('aria-hidden','true');
+}
+
+function wireInfoButton(btn,text){
+  btn.setAttribute('aria-describedby',helpPopover.id);
+  btn.addEventListener('mouseenter',()=>showHelp(btn,text,{pin:false}));
+  btn.addEventListener('mouseleave',()=>{ if(!helpPinned) hideHelp(true); });
+  btn.addEventListener('focus',()=>showHelp(btn,text,{pin:false}));
+  btn.addEventListener('blur',()=>{ if(!helpPinned) hideHelp(true); });
+  btn.addEventListener('click',e=>{
+    e.preventDefault();e.stopPropagation();
+    if(activeHelpButton===btn && helpPinned){ hideHelp(true); return; }
+    showHelp(btn,text,{pin:true});
+  });
+}
+
+function installMicroLearning(){
+  document.querySelectorAll('#build .field').forEach(field=>{
+    const control=field.querySelector('input,select,textarea');
+    const label=field.querySelector('label');
+    if(!control||!label||!fieldHelp[control.id]||label.classList.contains('has-help')) return;
+    label.classList.add('has-help');
+    const btn=document.createElement('button');
+    btn.type='button';btn.className='info-dot';btn.textContent='i';
+    btn.setAttribute('aria-label',`Explain ${label.textContent.trim()}`);
+    btn.setAttribute('aria-expanded','false');
+    label.appendChild(btn);
+    wireInfoButton(btn,fieldHelp[control.id]);
+  });
+
+  document.querySelectorAll('#build .group').forEach(group=>{
+    const title=group.querySelector('.group-title h4');
+    if(!title||!groupHelp[title.textContent.trim()]||title.classList.contains('has-help')) return;
+    const key=title.textContent.trim();
+    title.classList.add('has-help');
+    const btn=document.createElement('button');
+    btn.type='button';btn.className='info-dot';btn.textContent='i';
+    btn.setAttribute('aria-label',`Explain ${key}`);
+    btn.setAttribute('aria-expanded','false');
+    title.appendChild(btn);
+    wireInfoButton(btn,groupHelp[key]);
+  });
+
+  document.addEventListener('click',e=>{ if(!e.target.closest('.info-dot') && !e.target.closest('.micro-help-popover')) hideHelp(true); });
+  window.addEventListener('resize',()=>{ if(activeHelpButton) positionHelpPopover(activeHelpButton); });
+  window.addEventListener('scroll',()=>{ if(activeHelpButton) positionHelpPopover(activeHelpButton); },true);
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') hideHelp(true); });
+}
+installMicroLearning();
+
+
+// V5 · compact DOC ROI mobile navigation
+const docroiMenuButton=document.querySelector('.hamb');
+const docroiMainNav=document.getElementById('mainNav');
+if(docroiMenuButton && docroiMainNav){
+  docroiMenuButton.addEventListener('click',()=>{
+    const open=docroiMainNav.classList.toggle('open');
+    docroiMenuButton.setAttribute('aria-expanded',String(open));
+    docroiMenuButton.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+  });
+  docroiMainNav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+    docroiMainNav.classList.remove('open');
+    docroiMenuButton.setAttribute('aria-expanded','false');
+    docroiMenuButton.setAttribute('aria-label','Open navigation');
+  }));
+}
+
+document.querySelectorAll('.step').forEach(b=>b.addEventListener('click',()=>goToStep(b.dataset.target)));
+document.querySelectorAll('.journey-tab').forEach(b=>b.addEventListener('click',()=>selectJourneyGuide(b.dataset.guide)));
+const observed=['learn','build','contract','dashboard'].map(id=>document.getElementById(id)).filter(Boolean);
+if('IntersectionObserver' in window){const io=new IntersectionObserver(entries=>{const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(visible)setActiveStep(visible.target.id);},{rootMargin:'-150px 0px -55% 0px',threshold:[0,.15,.35]});observed.forEach(x=>io.observe(x));}
+document.addEventListener('input',updatePreview);document.addEventListener('change',updatePreview);updatePreview();
+</script>
+</body>
+</html>
